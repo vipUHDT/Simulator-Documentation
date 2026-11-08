@@ -1,0 +1,15 @@
+# Sphinx-generated outputs
+docs/build/
+docs/_build/
+
+# Python environments and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

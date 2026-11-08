@@ -1,0 +1,5 @@
+sphinx
+myst-parser
+shibuya
+sphinx-favicon
+sphinx-design
