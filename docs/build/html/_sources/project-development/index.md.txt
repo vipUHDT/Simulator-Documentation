@@ -1,3 +1,7 @@
+---
+author: Jia Jun Li
+---
+
 # Project Development
 
 The UAV-E Simulator project aims to develop a modular simulation framework for vision-based formation flight with multiple unmanned aircraft. The simulator will provide a controlled environment in which autonomous flight software can use synthetic camera observations to detect and track other aircraft and evaluate formation-keeping behavior before physical flight tests.

@@ -6,6 +6,11 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
+import os
+import sys
+
+sys.path.insert(0, os.path.abspath("_ext"))
+
 project = 'UHDT-Sim'
 copyright = '2026, Jia Jun Li, Connor Nishimoto, Tristan Ta'
 author = 'Jia Jun Li, Connor Nishimoto, Tristan Ta'
@@ -21,6 +26,7 @@ extensions = [
     "sphinx.ext.viewcode",
     "sphinx_favicon",
     "sphinx_design",
+    "page_metadata",
 ]
 
 myst_enable_extensions = [

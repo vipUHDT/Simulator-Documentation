@@ -258,8 +258,84 @@ Coordinate when editing shared files such as `docs/source/index.md`, section-lev
 
 The current Sphinx configuration uses `myst_parser`, `sphinx.ext.autodoc`, `sphinx.ext.napoleon`, `sphinx.ext.viewcode`, `sphinx_favicon`, and `sphinx_design`. The `shibuya` theme and MyST `colon_fence` feature are also enabled. When adding a new Sphinx extension, update both `docs/source/conf.py` and `requirements.txt` when a separate package is required.
 
+## 9. Page authors and automatic word counts
 
-## 9. Useful references
+Every documentation page should identify who wrote it. Add **YAML front matter** at the **very beginning** of each `.md` file, before the `#` page title. This records the author without putting their name directly into the page text. This is for the ECE 496 writing intensive requirements.
+
+**One author:**
+
+```markdown
+---
+author: Tristan Ta
+---
+
+# Simulator Setup
+
+Explain how to set up the simulator.
+```
+
+**Multiple authors:**
+
+```markdown
+---
+author:
+  - Jia Jun Li
+  - Connor Nishimoto
+---
+
+# Simulator Architecture
+```
+
+**Original author and later contributors (optional):**
+
+```markdown
+---
+author: Connor Nishimoto
+contributors:
+  - Jia Jun Li
+---
+
+# Simulator Architecture
+```
+
+- Use a consistent spelling of each person's name across pages.
+- **Do not manually add or update word counts.** They will be calculated automatically when the documentation is built.
+- When creating a page, remember to include its metadata and add the page to the appropriate `toctree` as described in Section 5.
+
+### Displaying the author and word count on the site
+
+The YAML above stores attribution, but YAML alone does not create the visible author and word-count line.
+
+The custom `page_metadata` Sphinx extension must be installed and enabled:
+
+1. Create `docs/source/_ext/page_metadata.py` using the extension code provided in the setup instructions.
+2. Add `"page_metadata"` to the `extensions` list in `docs/source/conf.py`.
+3. Add `_ext` to Python's import path in `conf.py`.
+
+Once configured, rebuild the documentation:
+
+```bash
+cd docs
+make html
+```
+
+On Windows without `make`:
+
+```bash
+sphinx-build -b html source build/html
+```
+
+Each page should display a line similar to:
+
+```text
+Author: Jia Jun Li  |  Word Count: 427
+```
+
+The word count is recalculated during each build and is intended to include headings and regular text while excluding code blocks.
+
+The example number above is illustrative. If the extension has not been installed, the author metadata will still be stored in the Markdown file, but the author and word count will not automatically appear on the generated site.
+
+## 10. Useful references
 
 - [Sphinx documentation](https://www.sphinx-doc.org/en/master/)
 - [MyST Markdown guide](https://myst-parser.readthedocs.io/en/latest/)
